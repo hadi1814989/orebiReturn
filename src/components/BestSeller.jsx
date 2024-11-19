@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import Arrivals from './Arrivals'
-import { ApiData } from './ContextApi';
+import { ApiData } from './Contextapi';
 import { Link } from 'react-router-dom';
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
