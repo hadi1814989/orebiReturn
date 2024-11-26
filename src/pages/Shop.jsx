@@ -59,7 +59,11 @@ const Shop = () => {
 
    let handleBrand = (bitem) =>{
       let filterItem = info.filter((item) => item.brand == bitem)  
-      setFilterBrand(filterItem);   
+      if(filterBrand.length > 0){
+        setFilterCategory(filterItem);   
+      }else{
+        setFilterCategory()
+      }
    }
    let handleAll = ()=>{
     setFilterCategory("")
@@ -73,7 +77,11 @@ const Shop = () => {
     setHigh(value.high)
     let priceSet = info.filter((item)=> item.price > value.low && item.price < value.high)
     setPriceShow(priceSet)
-    console.log(priceSet);
+    if(priceSet.length > 0){
+      setFilterCategory(priceSet)
+    }else{
+      setFilterCategory("")
+    }
    }
    
    

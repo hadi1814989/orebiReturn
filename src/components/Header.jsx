@@ -18,8 +18,8 @@ const Header = () => {
    <ul className='flex gap-x-[40px]'>
     <li className='text-[#979797] font-normal text-[14px] font-DM hover:text-[#000] duration-300'><Link>Home</Link></li>
     <li className='text-[#979797] font-normal text-[14px] font-DM hover:text-[#000] duration-300'><Link to="/shop">Shop</Link></li>
-    <li className='text-[#979797] font-normal text-[14px] font-DM hover:text-[#000] duration-300'>About</li>
-    <li className='text-[#979797] font-normal text-[14px] font-DM hover:text-[#000] duration-300'>Contact</li>
+    <li className='text-[#979797] font-normal text-[14px] font-DM hover:text-[#000] duration-300'><Link to="/about">About</Link></li>
+    <li className='text-[#979797] font-normal text-[14px] font-DM hover:text-[#000] duration-300'><Link to="/contact">Contact</Link></li>
     <li className='text-[#979797] font-normal text-[14px] font-DM hover:text-[#000] duration-300'>Journal</li>
    </ul>
   </div>

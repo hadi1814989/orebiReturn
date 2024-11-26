@@ -8,17 +8,25 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import 'animate.css';
 import cart from "../assets/cart-img.png"
 import { RxCross2 } from "react-icons/rx";
+import { useDispatch, useSelector } from 'react-redux';
+import { productRemove } from '../slice/productSlice';
+import { Link, useNavigate } from 'react-router-dom';
 const SearchBar = () => {
+  let data = useSelector((state)=> state.product.cartItem)
+  console.log(data.length);
+  
   let cateRef = useRef();
   let cateRef2 = useRef();
   let cartRef = useRef();
   let cartRef2 = useRef();
   let cartRefBlock = useRef()
+  let dispatch = useDispatch()
+  let navigate = useNavigate()
     let [show, setShow]=useState(false)
     let [show0, setShow0]=useState(false)
     let [show1, setShow1]=useState(false)
     let [show2, setShow2]=useState(false)
-    let [block , setBlock] = useState(false)
+   
     useEffect(()=>{
       document.addEventListener("click",(e)=>{
         if(cateRef.current.contains(e.target)){
@@ -41,16 +49,27 @@ const SearchBar = () => {
         }else{
           setShow2(false)
         }
+        if(cartRefBlock.current.contains(e.target)){
+          setShow1(true)
+        }
       })
     },[show , show0, show1, show2])
-    let dropMenu1 = () => {
-      if (!show1) {
-        setShow1(!show1)
-        setShow1(true);
-      } else {
-        setShow1(false);
-      }
-    };
+    let handleCartPage = () =>{
+      navigate("/cart")
+      setShow1(false)
+    }
+    let handleCheckoutPage = () =>{
+      navigate("/checkout")
+      setShow1(false)
+    }
+    // let dropMenu1 = () => {
+    //   if (!show1) {
+    //     setShow1(!show1)
+    //     setShow1(true);
+    //   } else {
+    //     setShow1(false);
+    //   }
+    // };
   return (
   <section className='border-t-2 border-t-[#979797] border-b-2 border-b-[#979797] py-[25px] bg-[#F5F5F3]'>
     <div className="max-w-container mx-auto flex px-3">
@@ -144,6 +163,8 @@ const SearchBar = () => {
             </div>
             {/* onClick={dropMenu1} */}
             <div ref={cartRef} className="relative z-[777]" >
+             {data.length > 0 && ( <div className=" absolute top-[-15px] left-[7px] w-[20px] h-[20px] rounded-full bg-[red] text-white text-[12px] text-center leading-[20px]">{data.length}</div>)}
+              
               <FaCartShopping />
               <div
              style={{ display: show1 ? 'block' : 'none' }}
@@ -151,21 +172,24 @@ const SearchBar = () => {
              >
               {show1 && 
              ( <div ref={cartRefBlock}  className="">
-                <div className="flex bg-[rgba(233,230,230,0.9)] py-4 w-[360px] px-5">
-                  <div className=""><img src={cart} alt="" /></div>
+                 {data.map((item , i)=>(
+               <div className="flex bg-[rgba(233,230,230,0.9)] py-4 w-[360px] px-5 items-center">
+                  <div className=" w-[41%]"><img src={item.thumbnail} alt="" /></div>
                 <div className="">
-                <div className="flex  font-DM font-bold text-[14px] ml-3"><h3>Black Smart Watch</h3></div>
-                <div className="flex font-DM font-bold text-[14px] ml-3"><h3>$44.00</h3></div>
+                <div className="flex  font-DM font-bold text-[14px] ml-3"><h3>{item.title}</h3></div>
+                <div className="flex font-DM font-bold text-[14px] ml-3"><h3>${item.price}</h3></div>
                 </div>
-                <div className=" ms-auto text-[20px]">
+                <div onClick={()=> dispatch(productRemove(i))} className=" ms-auto text-[20px]">
                  <RxCross2 />
                 </div>
                 </div>
+               
+                 ))}
                 <div className="bg-white py-4 px-5">
-                  <h5 className='text-[rgba(166,162,162,0.9)]'>Subtotal:<span className='text-black font-bold'> $44.00</span></h5>
+                  {/* <h5 className='text-[rgba(166,162,162,0.9)]'>Subtotal:<span className='text-black font-bold'> $44.00</span></h5> */}
                  <div className="flex my-5">
-                 <button className='px-[40px] py-[16px] text-[10px] border-2 border-[#000] me-3 hover:bg-black hover:text-white duration-300'>View Cart</button>
-                 <button className='px-[40px] py-[16px] text-[10px] border-2 border-[#000] me-3 hover:bg-black hover:text-white duration-300'>Checkout</button>
+                 <button onClick={handleCartPage} className='px-[40px] py-[16px] text-[10px] border-2 border-[#000] me-3 hover:bg-black hover:text-white duration-300'>View Cart</button>
+                 <button onClick={handleCheckoutPage} className='px-[40px] py-[16px] text-[10px] border-2 border-[#000] me-3 hover:bg-black hover:text-white duration-300'>Checkout</button>
                  </div>
                 </div>
               </div>
