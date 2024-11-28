@@ -1,4 +1,4 @@
-import React, {useEffect,  useRef, useState } from 'react'
+import React, {useContext, useEffect,  useRef, useState } from 'react'
 import { HiMiniBars3BottomLeft } from "react-icons/hi2";
 import { IoPersonSharp } from "react-icons/io5";
 import { RiArrowDownSFill } from "react-icons/ri";
@@ -11,10 +11,10 @@ import { RxCross2 } from "react-icons/rx";
 import { useDispatch, useSelector } from 'react-redux';
 import { productRemove } from '../slice/productSlice';
 import { Link, useNavigate } from 'react-router-dom';
+import { ApiData } from './Contextapi';
 const SearchBar = () => {
   let data = useSelector((state)=> state.product.cartItem)
-  console.log(data.length);
-  
+  let { info, loading } = useContext(ApiData);
   let cateRef = useRef();
   let cateRef2 = useRef();
   let cartRef = useRef();
@@ -22,6 +22,8 @@ const SearchBar = () => {
   let cartRefBlock = useRef()
   let dispatch = useDispatch()
   let navigate = useNavigate()
+  let [Search , setSearch]= useState("")
+  let [searchFilter , setSearchFilter] = useState([])
     let [show, setShow]=useState(false)
     let [show0, setShow0]=useState(false)
     let [show1, setShow1]=useState(false)
@@ -61,6 +63,12 @@ const SearchBar = () => {
     let handleCheckoutPage = () =>{
       navigate("/checkout")
       setShow1(false)
+    }
+    let handleSearch = (e)=>{
+      setSearch(e.target.value);
+      let searchOneByOne = info.filter((item)=> item.title.toLowerCase().includes(e.target.value.toLowerCase()))
+      console.log(searchOneByOne);
+      
     }
     // let dropMenu1 = () => {
     //   if (!show1) {
@@ -140,7 +148,7 @@ const SearchBar = () => {
     </Menu>
         </div>
         <div className="w-[40%] relative">
-            <input type="text" placeholder='Search Products' className='w-full bg-white border-0 py-[16px] pl-[21px] outline-none ' />
+            <input onClick={handleSearch} type="text" placeholder='Search Products' className='w-full bg-white border-0 py-[16px] pl-[21px] outline-none ' />
             <div className=" absolute right-[5%] top-[50%] translate-y-[-50%]">
              <IoSearchSharp />
             </div>

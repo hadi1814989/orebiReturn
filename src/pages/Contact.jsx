@@ -37,40 +37,41 @@ const Contact = () => {
             <input
               type="text"
               placeholder="Your name here"
-              className="border-transparent border-b border-b-[#f0f0f0] pl-0 focus:ring-transparent focus:border-transparent focus:border-b focus:border-b-[#f0f0f0]
+              className=" focus:outline-none border-transparent border-b border-b-[#f0f0f0] pl-0 focus:ring-transparent focus:border-transparent focus:border-b focus:border-b-[#f0f0f0]
               font-sans font-normal text-[14px] text-[#767676] "
             />
           </div>
           <div className="flex flex-col py-[23px]">
             <label
               htmlFor=""
-              className="font-sans font-bold text-[16px] text-[#262626]"
+              className="  font-sans font-bold text-[16px] text-[#262626]"
             >
               Email
             </label>
             <input
               type="email"
               placeholder="Your email here"
-              className="border-transparent border-b border-b-[#f0f0f0] pl-0 focus:ring-transparent focus:border-transparent focus:border-b focus:border-b-[#f0f0f0]
+              className=" focus:outline-none border-transparent border-b border-b-[#f0f0f0] pl-0 focus:ring-transparent focus:border-transparent focus:border-b focus:border-b-[#f0f0f0]
               font-sans font-normal text-[14px] text-[#767676] "
             />
           </div>
           <div className="flex flex-col">
             <label
               htmlFor=""
-              className="font-sans font-bold text-[16px] text-[#262626]"
+              className="  font-sans font-bold text-[16px] text-[#262626]"
             >
               Message
             </label>
             <textarea
-              className="border-transparent border-b border-b-[#f0f0f0] pl-0 focus:ring-transparent focus:border-transparent focus:border-b focus:border-b-[#f0f0f0]
+              className=" focus:outline-none border-transparent border-b border-b-[#f0f0f0] pl-0 focus:ring-transparent focus:border-transparent focus:border-b focus:border-b-[#f0f0f0]
               font-sans font-normal text-[14px] text-[#767676] resize-none"
               rows="4"
               placeholder="Your message here..."
             />
           </div>
          <div className="pt-[30px]">
-         <button type="submit" className="px-10 py-4 border border-black  bg-black text-white">
+         <button type="submit" className="px-10 py-4 border border-black   text-black
+          hover:bg-black hover:text-white duration-150">
          Contact
           </button>
          </div>

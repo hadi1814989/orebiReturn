@@ -84,7 +84,7 @@ const Post = ({ allPage, activeList, filterCategory , filterBrand, priceShow}) =
           ) : (
               <div className={`${activeList === "active" ? "w-full" : "flex flex-wrap"}`}>
                   {allPage.map((item) => (
-                      <div className="w-full sm:w-[50%] lg:w-1/3 flex" key={item.id}> {/* Added unique key */}
+                      <div className="w-full sm:w-[50%] lg:w-1/3 flex" key={item.id}> 
                           <div className="w-[100%]">
                               <div className="relative group overflow-hidden sm:ms-6 lg:ms-0 ms-4">
                                   <Link to={`/product/${item.id}`}>
